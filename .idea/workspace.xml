@@ -2,14 +2,99 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f67f5034-0d85-46ad-a5aa-4b61fa774722" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/balance-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/balance-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/second-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/second-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/study-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zuul/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/zuul/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/src/main/java/com/ccl/balanceserver/BalanceServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/src/main/java/com/ccl/balanceserver/client/ServiceFallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/src/main/java/com/ccl/balanceserver/client/ServiceFeignClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balance-server/src/test/java/com/ccl/balanceserver/BalanceServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/src/main/java/com/ccl/config/ConfigApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/src/main/resources/config/dev/config-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/src/main/resources/config/test/config-test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/src/main/java/com/ccl/eureka/EurekaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/src/test/java/com/ccl/eureka/EurekaApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/src/main/java/com/ccl/secondserver/SecondServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/src/main/java/com/ccl/secondserver/controller/ServiceBalanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/second-server/src/test/java/com/ccl/secondserver/SecondServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ccl/server/ServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ccl/server/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ccl/server/TestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ccl/server/TestServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ccl/server/controller/ServiceBalanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/com/ccl/server/ServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/src/main/java/com/ccl/studyserver/StudyServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/src/main/java/com/ccl/studyserver/controller/ServiceBalanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-server/src/test/java/com/ccl/studyserver/StudyServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/com/ccl/web/TestWebController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/com/ccl/web/WebApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/test/java/com/ccl/web/WebApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/src/main/java/com/ccl/zuul/ZuulApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul/src/test/java/com/ccl/zuul/ZuulApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +197,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604557971284</updated>
-      <workItem from="1604557973867" duration="1068000" />
+      <workItem from="1604557973867" duration="2162000" />
     </task>
     <servers />
   </component>
