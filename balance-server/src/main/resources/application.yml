@@ -1,0 +1,18 @@
+
+server:
+  port: 9908
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9922/eureka/
+
+spring:
+  application:
+    name: balance-server
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+
+
