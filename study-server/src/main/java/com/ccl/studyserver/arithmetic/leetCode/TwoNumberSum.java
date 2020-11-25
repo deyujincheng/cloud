@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : chichenglong
@@ -99,18 +100,27 @@ public class TwoNumberSum {
         int l = 0, maxL = 0;
         for (int i = 0; i < s.length(); i++) {
             int index = map.getOrDefault(s.charAt(i), -1);
-            System.out.println("index=" + index);
             l = Math.max(l, index + 1);
             maxL = Math.max(maxL, i - l + 1);
             map.put(s.charAt(i), i);
-            System.out.println("i=" + i + ":l=" + l + ":maxL=" + maxL);
-            System.out.println(map);
         }
         return maxL;
     }
 
-    public static void main(String[] args) {
-        String str = "dvdf";
-        System.out.println(lengthOfLongestSubstring(str));
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
