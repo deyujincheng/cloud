@@ -1,10 +1,6 @@
 package com.ccl.studyserver.arithmetic.leetCode;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -105,6 +101,94 @@ public class TwoNumberSum {
             map.put(s.charAt(i), i);
         }
         return maxL;
+    }
+
+
+    /*
+    最长回文子串
+    给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+    示例 1：
+    输入: "babad"
+    输出: "bab"
+    注意: "aba" 也是一个有效答案。
+    示例 2：
+    输入: "cbbd"
+    输出: "bb"
+    */
+
+    public static String longestPalindrome(String s) {
+        if (s.isEmpty()) {
+            return s;
+        }
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        int left = 0;
+        int right = 0;
+        for (int i = n - 2; i >= 0; i--) {
+            dp[i][i] = true;
+            for (int j = i + 1; j < n; j++) {
+                System.out.println(i + "==" + j);
+                System.out.println(dp[i+1][j-1] + ":i+1=" + (i+1) + ":j-1=" + (j-1));
+                dp[i][j] = s.charAt(i) == s.charAt(j) &&( j-i<3||dp[i+1][j-1]);//小于3是因为aba一定是回文
+                if(dp[i][j]&&right-left<j-i){
+                    left=i;
+                    right=j;
+                }
+            }
+        }
+        return s.substring(left,right+1);
+    }
+
+
+    public static int findPeakElement(int[] nums) {
+        if (nums.length == 1) {
+            return 0;
+        }
+        if (nums[0] > nums[1]) {
+            return 0;
+        }
+        int low = 1;
+        int hight = nums.length - 1;
+        int re = 0;
+        while (low < hight) {
+            int mid = (low + hight) / 2;
+            if (nums[mid] > nums[mid + 1] && nums[mid] > nums[mid - 1]) {
+                re=mid;
+                break;
+            } else if (nums[mid+1] > nums[mid]) {
+                low = mid + 1;
+            } else {
+                hight = mid - 1;
+            }
+        }
+        return re;
+    }
+
+
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,4,5,4,3,7,6};
+        System.out.println(findPeakElement(nums));
+    }
+
+
+    public static int findPeakElementNew(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int start = 0;
+        int end = nums.length - 1;
+        int mid;
+        while (start + 1 < end) {
+            mid = start + (end - start)/2;
+            if (nums[mid] < nums[mid+1]) {
+                start = mid;
+            } else if (nums[mid] > nums[mid + 1]) {
+                end = mid;
+            } else {
+                return mid;
+            }
+        }
+        return nums[start] > nums[end] ? start : end;
     }
 
 }
