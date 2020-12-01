@@ -46,10 +46,10 @@ public class BinarySearch {
         return -1;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {4,5,6,7,0,1,2};
-        System.out.println(search(nums, 2));
-    }
+//    public static void main(String[] args) {
+//        int[] nums = {4,5,6,7,0,1,2};
+//        System.out.println(search(nums, 2));
+//    }
 
     /**
      * leetcode-33
@@ -153,10 +153,10 @@ public class BinarySearch {
      }
 
 
-//    public static void main(String[] args) {
-//        int[] nums = {1,2,3,4,5,4,3,7,6};
-//        System.out.println(findPeakElement(nums));
-//    }
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,4,5,4,3,7,6};
+        System.out.println(findPeakElement(nums));
+    }
 
     /**
      * 寻找峰值

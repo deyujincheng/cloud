@@ -121,6 +121,30 @@ public class DoublePointer {
     数组里整数的范围为 [0, 1000]。
     */
 
+    public static void main(String[] args) {
+        int[] nums = {2,2,3,4};
+        System.out.println(triangleNumber(nums));
+    }
+    public static List<List<Integer>> triangleNumber(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length < 3) {
+            return result;
+        }
+        Arrays.sort(nums);
+        int total = 0;
+        for (int i = 0;i<nums.length;i++) {
+            int start = i  + 1;
+            int end=nums.length - 1;
+            while (start < end) {
+                if (nums[start] + nums[end] >  nums[i]) {
+                    total+=end-start;
+                } else {
+                    start++;
+                }
+            }
+        }
+        return result;
+    }
 
     /*
     42. 接雨水
