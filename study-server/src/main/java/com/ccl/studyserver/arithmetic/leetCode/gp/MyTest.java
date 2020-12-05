@@ -3,6 +3,7 @@ package com.ccl.studyserver.arithmetic.leetCode.gp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -192,4 +193,44 @@ public class MyTest {
         }
         return result;
     }
+
+
+    public static List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+        return result;
+    }
+
+    public static List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        List<Integer> left = preorderTraversal(root.left);
+        List<Integer> right = preorderTraversal(root.right);
+
+        result.add(root.val);
+        result.addAll(left);
+        result.addAll(right);
+
+        return result;
+    }
+
+
 }
