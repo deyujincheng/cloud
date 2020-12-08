@@ -5,22 +5,14 @@ package com.ccl.studyserver.arithmetic.leetCode.gp;
  * @version : V0.5
  * @Project : OCHServ
  * @Package : com.ccl.studyserver.arithmetic.leetCode.gp
- * @Class : TreeNode
- * @Description :
- * @CreateDate : 2020-12-03 10:18:47
+ * @Class : Heap
+ * @Description : 堆
+ * @CreateDate : 2020-12-08 22:54:13
  * @Copyright : 2019 dfcx.com Inc. All rights reserved.
  * @Reviewed :
  * @UpateLog :    Name    Date    Reason/Contents
  * ---------------------------------------
  * ****    ****    ****
  */
-public class TreeNode {
-
-    public int val;
-
-    public TreeNode left;
-
-    public TreeNode right;
-
-    public TreeNode(int x) { val = x; }
+public class Heap {
 }

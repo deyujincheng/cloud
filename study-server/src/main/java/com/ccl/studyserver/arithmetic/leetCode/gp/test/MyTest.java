@@ -1,11 +1,11 @@
-package com.ccl.studyserver.arithmetic.leetCode.gp;
+package com.ccl.studyserver.arithmetic.leetCode.gp.test;
+
+import com.ccl.studyserver.arithmetic.leetCode.gp.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author : chichenglong
@@ -231,6 +231,5 @@ public class MyTest {
 
         return result;
     }
-
 
 }
