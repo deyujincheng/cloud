@@ -175,7 +175,6 @@ public class Tree {
                 }
                 queue.add(node1);
             }
-
             if (!isLeft) {
                 index++;
             }

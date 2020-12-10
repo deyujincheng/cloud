@@ -1,5 +1,8 @@
 package com.ccl.studyserver.arithmetic.leetCode.gp;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * @author : chichenglong
  * @version : V0.5
@@ -52,6 +55,51 @@ public class Sort {
     }
 
     //选择排序
+    public static void selectSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int pos = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[pos] > array[j]) {
+                    pos = j;
+                }
+            }
+            if (pos != i) {
+                int temp = array[i];
+                array[i] = array[pos];
+                array[pos] = temp;
+            }
+        }
+    }
     //快速排序
+
+    public static void quickSort(int[] array) {
+        sort(array, 0, array.length - 1);
+    }
+
+    public static void sort(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int pivot = array[start];
+        int left = start;
+        int right = end;
+        while (left <= right) {
+            while (left <= right && array[left] < pivot) {
+                left++;
+            }
+            while (left <= right && array[right] > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                int temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        sort(array, start, right);
+        sort(array, left, end);
+    }
     //归并排序
 }
