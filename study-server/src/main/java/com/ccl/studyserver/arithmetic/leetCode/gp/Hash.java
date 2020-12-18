@@ -18,10 +18,6 @@ import java.util.*;
  */
 public class Hash {
 
-    public static void main(String[] args) {
-        String s = "abcaa";
-        System.out.println(longest(s));
-    }
     /*
     560
     子数组和等于k
@@ -128,6 +124,10 @@ public class Hash {
         return max;
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(longest("abcaa"));
+    }
 
     class Node {
         public int val;

@@ -35,6 +35,19 @@ public class ReverseLinked {
         return prev;
     }
 
+    public ListNode reverseList2(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while(cur!=null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            //指针后移
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if (head == null || m >= n) {
             return head;

@@ -66,11 +66,12 @@ public class HashTest {
     }
 
 
+    //abcdaefghik
     public static int getLongest(String s) {
         Set<Character> set = new HashSet<>();
-        int max = 0;
         int right = 0;
-        for (int i=0; i < s.length(); i++){
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
             while (right < s.length() && !set.contains(s.charAt(right))) {
                 set.add(s.charAt(right++));
                 max = Math.max(max, right - i);

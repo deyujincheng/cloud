@@ -1,5 +1,7 @@
 package com.ccl.studyserver.arithmetic.leetCode.gp;
 
+import java.util.List;
+
 /**
  * @author : chichenglong
  * @version : V0.5
@@ -15,4 +17,41 @@ package com.ccl.studyserver.arithmetic.leetCode.gp;
  * ****    ****    ****
  */
 public class DFS {
+
+    /*
+    46
+    全排列
+     */
+//    public static List<List<Integer>> permute(int[] nums) {
+//        for () {
+//
+//        }
+//    }
+
+    /*
+    子集
+    input:[0]
+    output:[
+        [],
+        [0]
+    ]
+
+    input:[1,2,3]
+    output:[
+        [3],
+        [1].
+        [2],
+        [1,2,3],
+        [1,3],
+        [2,3],
+        [1,2],
+        []
+    ]
+     */
+
+
+
+    /*
+    n 皇后
+     */
 }

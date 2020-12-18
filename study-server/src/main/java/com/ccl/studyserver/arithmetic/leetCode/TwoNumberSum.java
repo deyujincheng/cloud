@@ -1,5 +1,6 @@
 package com.ccl.studyserver.arithmetic.leetCode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +37,12 @@ public class TwoNumberSum {
         return indexs;
     }
 
+    public static void main(String[] args) {
+        int[] nums = {2,7,11,15};
+        System.out.println(Arrays.toString(twoSum1(nums, 13)));
+    }
 
-    public int[] twoSum1(int[] nums, int target) {
+    public static int[] twoSum1(int[] nums, int target) {
         HashMap<Integer,Integer> map = new HashMap<>();
         for(int i = 0; i < nums.length; i++){
             if(map.containsKey(nums[i])){
@@ -164,11 +169,6 @@ public class TwoNumberSum {
         return re;
     }
 
-
-    public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5,4,3,7,6};
-        System.out.println(findPeakElement(nums));
-    }
 
 
     public static int findPeakElementNew(int[] nums) {

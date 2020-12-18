@@ -16,6 +16,7 @@ package com.ccl.studyserver.arithmetic.linked;
  */
 public class ListNode {
 
+    public int val;
     public ListNode next;
     private ListNode prev;
 

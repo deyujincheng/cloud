@@ -115,7 +115,7 @@ public class Tree {
 
     /*
      * 297
-     * 序列化与凡序列话
+     * 序列化与反序列化
      */
 
     // Encodes a tree to a single string.
@@ -182,4 +182,9 @@ public class Tree {
         }
         return queue.get(0);
     }
+
+
+    /*
+    二叉树公共祖先
+     */
 }
