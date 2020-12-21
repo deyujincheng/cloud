@@ -586,6 +586,9 @@ public class Easy {
         return ret;
     }
 
+    /*
+    反转字符串
+     */
     public void reverseString(char[] s) {
         int start = 0;
         int end = s.length - 1;
@@ -598,9 +601,144 @@ public class Easy {
         }
     }
 
-    public static void main(String[] args) {
-        String s = "ang";
-        String t = "abng";
-        System.out.println(findTheDifferenceByBitOprate(s, t));
+
+
+    /*
+    22.生成括号
+     */
+
+
+    /*
+    316 去除重复字母
+     */
+    public static String removeDuplicateLetters(String s) {
+        int len = s.length();
+        char[] charArray = s.toCharArray();
+        int[] lastIndex = new int[26];
+        for (int i = 0; i < len; i++) {
+            System.out.println(charArray[i] - 'a' + "===" + i);
+            lastIndex[charArray[i] - 'a'] = i;
+        }
+        System.out.println(Arrays.toString(lastIndex));
+        Deque<Character> stack = new ArrayDeque<>();
+        boolean[] visited = new boolean[26];
+        for (int i = 0; i < len; i++) {
+            if (visited[charArray[i] - 'a']) {
+                continue;
+            }
+            //栈顶元素大于遍历到的元素并且当前栈顶元素以后还会看到
+            while (!stack.isEmpty() && stack.peekLast() > charArray[i] && lastIndex[stack.peekLast()-'a'] > i) {
+                Character top = stack.removeLast();
+                visited[top - 'a'] = false;
+            }
+            stack.addLast(charArray[i]);
+            visited[charArray[i] - 'a'] = true;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (char c : stack) {
+            sb.append(c);
+        }
+        return sb.toString();
     }
+
+
+    //核心思想就是遇到栈顶比当前字符大而且后面还有栈顶相同的字符，则将栈顶弹出
+    public static String removeDuplicate(String s) {
+        int len = s.length();
+        int[] lastIndex = new int[26];
+        for (int i = 0; i < len; i++) {
+            lastIndex[s.charAt(i) - 'a'] = i;
+        }
+        Deque<Character> stack = new ArrayDeque<>();
+        for (int i = 0; i < len; i++) {
+            if (stack.contains(s.charAt(i))) {
+                continue;
+            }
+            while (!stack.isEmpty() && stack.peekLast() > s.charAt(i) && lastIndex[stack.peekLast() - 'a'] > i) {
+                stack.removeLast();
+            }
+            stack.addLast(s.charAt(i));
+        }
+        StringBuilder sb = new StringBuilder();
+        for (char c: stack) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+
+    /*
+    746. 使用最小花费爬楼梯
+     */
+    public static int minCostClimbingStairs(int[] cost) {
+        //空间复杂度优化之后
+        int len = cost.length;
+        int[] dp = new int[2];
+        dp[1] = Math.min(cost[0], cost[1]);
+        for (int i = 2; i < cost.length; i++) {
+            dp[i%2] = Math.min(dp[(i - 1) % 2] + cost[i], dp[(i - 2) % 2] + cost[i - 1]);
+        }
+        return dp[(len - 1) % 2];
+
+
+//        int len = cost.length;
+//        int[] dp = new int[len];
+//        dp[0] = 0;
+//        dp[1] = Math.min(cost[0], cost[1]);
+//        for (int i = 2; i < cost.length; i++) {
+//            dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i - 1]);
+//        }
+//        return dp[len - 1];
+    }
+
+
+
+    public static int[] twoSum1(int[] nums, int target) {
+        int[] result = new int[2];
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                result[0] = map.get(nums[i]);
+                result[1] = i + 1;
+                return result;
+            }
+            map.put(target - nums[i],i + 1);
+        }
+        return result;
+    }
+
+    public static boolean isUnique(String astr) {
+        int mark = 0;
+        for(char ch : astr.toCharArray()) {
+            int index = ch - 'a';
+            if((mark & (1 << index)) != 0) {
+                return false;
+            } else {
+                mark |= (1 << index);
+            }
+        }
+        return true;
+    }
+
+
+    public static void main(String[] args) {
+        int[] cost = {1,1,0,0};
+        System.out.println(minCostClimbingStairs(cost));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
