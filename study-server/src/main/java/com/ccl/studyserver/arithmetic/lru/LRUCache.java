@@ -2,6 +2,8 @@ package com.ccl.studyserver.arithmetic.lru;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author : chichenglong
@@ -40,10 +42,20 @@ class LRUCache {
     }
 
     public static void main(String[] args) {
-        LinkedHashMap<String,String> map = new LinkedHashMap<>();
-        map.put("a","a");
-        map.put("b","b");
-        map.put("c","c");
-        System.out.println(map.get(""));
+        ConcurrentHashMap mapa = new ConcurrentHashMap();
+        LRUCache lruCache = new LRUCache(4);
+        lruCache.put(1,1);
+        lruCache.put(2,2);
+        lruCache.put(3,3);
+        lruCache.put(4,4);
+        lruCache.put(5,5);
+        lruCache.get(3);
+        for(Map.Entry<Integer, Integer> entry : lruCache.cache.entrySet()) {
+            System.out.println(entry.getKey() + " " +entry.getValue());
+        }
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>(1, (o1, o2) -> o2 - o1);
+        queue.add(1);
+        queue.add(2);
     }
 }

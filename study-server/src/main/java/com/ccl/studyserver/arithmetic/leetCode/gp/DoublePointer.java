@@ -125,25 +125,25 @@ public class DoublePointer {
         int[] nums = {2,2,3,4};
         System.out.println(triangleNumber(nums));
     }
-    public static List<List<Integer>> triangleNumber(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
+    public static int triangleNumber(int[] nums) {
         if (nums == null || nums.length < 3) {
-            return result;
+            return 0;
         }
         Arrays.sort(nums);
         int total = 0;
-        for (int i = 0;i<nums.length;i++) {
-            int start = i  + 1;
-            int end=nums.length - 1;
+        for (int k = nums.length - 1; k >= 2; k--) {
+            int start = 0;
+            int end = k - 1;
             while (start < end) {
-                if (nums[start] + nums[end] >  nums[i]) {
-                    total+=end-start;
+                if (nums[start] + nums[end] > nums[k]) {
+                    total += (end - start);
+                    end --;
                 } else {
                     start++;
                 }
             }
         }
-        return result;
+        return total;
     }
 
     /*

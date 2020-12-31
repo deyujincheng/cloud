@@ -122,8 +122,8 @@ public class DP {
                 roads[i][0] = 1;
                 roads[0][j] = 1;
                 roads[i][j] = roads[i - 1][j] + roads[i][j - 1];
-                System.out.println("roads" + i + ":" + j + "=" + "roads" + (i-1) + ":" + j + "+" + "roads" + i + ":" + (j-1));
-                System.out.println("roads"+i+j+"="+roads[i][j]);
+//                System.out.println("roads" + i + ":" + j + "=" + "roads" + (i-1) + ":" + j + "+" + "roads" + i + ":" + (j-1));
+//                System.out.println("roads"+i+j+"="+roads[i][j]);
             }
         }
         return roads[m - 1][n - 1];
@@ -212,7 +212,31 @@ public class DP {
         输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
         输出: false
      */
-    public boolean wordBreak1(String s, List<String> wordDict) {
+    public static boolean wordBreak2(String s, List<String> wordDict) {
+        int n = s.length();
+        int left = 0;
+        int right = 0;
+        while (right < n) {
+            right++;
+            String split = s.substring(left, right);
+            if (wordDict.contains(split)) {
+                left = right;
+                System.out.println(left);
+            }
+        }
+        return left == n;
+    }
+
+    public static void main(String[] args) {
+        String s = "aaaaaaa";
+        List<String> dictList = new ArrayList<>();
+        dictList.add("aaaa");
+        dictList.add("aaa");
+//        dictList.add("cat");
+        System.out.println(wordBreak1(s, dictList));
+    }
+
+    public static boolean wordBreak1(String s, List<String> wordDict) {
         // 可以类比于背包问题
         int n = s.length();
         // memo[i] 表示 s 中以 i - 1 结尾的字符串是否可被 wordDict 拆分
@@ -221,11 +245,13 @@ public class DP {
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
                 if (memo[j] && wordDict.contains(s.substring(j, i))) {
+                    System.out.println(i + ":" + j);
                     memo[i] = true;
                     break;
                 }
             }
         }
+        System.out.println(Arrays.toString(memo));
         return memo[n];
     }
 
@@ -237,15 +263,15 @@ public class DP {
         boolean[] canSegment = new boolean[s.length() + 1];
         canSegment[0] = true;
         int largetlengthWord = getLargest(dict);
-        System.out.println("largetlengthWord=" + largetlengthWord);
+//        System.out.println("largetlengthWord=" + largetlengthWord);
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j <= largetlengthWord && j <= i; j++) {
                 if (!canSegment[i - j]) {
                     continue;
                 }
                 if (dict.contains(s.substring(i - j, i))) {
-                    System.out.println("i = " + i + "j=" + j + "::" +(i - j) + "->" + i);
-                    System.out.println((i - j) + "->" + i + "=" + s.substring(i - j, i));
+//                    System.out.println("i = " + i + "j=" + j + "::" +(i - j) + "->" + i);
+//                    System.out.println((i - j) + "->" + i + "=" + s.substring(i - j, i));
                     canSegment[i] = true;
                 }
             }
@@ -261,14 +287,6 @@ public class DP {
         return max;
     }
 
-    public static void main(String[] args) {
-        String s = "applepenapple";
-        List<String> dictList = new ArrayList<>();
-        dictList.add("apple");
-        dictList.add("pen");
-        dictList.add("cat");
-        System.out.println(wordBreak(s, dictList));
-    }
     /*
     132
     回文分割

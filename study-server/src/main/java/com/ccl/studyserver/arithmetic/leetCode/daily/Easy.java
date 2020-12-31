@@ -1,5 +1,6 @@
 package com.ccl.studyserver.arithmetic.leetCode.daily;
 
+import com.ccl.studyserver.arithmetic.leetCode.gp.TreeNode;
 import com.ccl.studyserver.arithmetic.linked.ListNode;
 import com.google.inject.internal.cglib.proxy.$MethodProxy;
 
@@ -507,6 +508,8 @@ public class Easy {
             m--;
             n--;
         }
+
+        //con=1  tail=2
         ListNode con = prev, tail = cur;
         ListNode third = null;
         while (n > 0) {
@@ -710,35 +713,325 @@ public class Easy {
         return result;
     }
 
+    /*
+    是否唯一
+     */
     public static boolean isUnique(String astr) {
         int mark = 0;
-        for(char ch : astr.toCharArray()) {
-            int index = ch - 'a';
-            if((mark & (1 << index)) != 0) {
+        for (char c : astr.toCharArray()) {
+            int offset = c - 'a';
+            if ((mark & (1 << offset)) != 0) {
                 return false;
             } else {
-                mark |= (1 << index);
+                mark |= (1 << offset);
             }
         }
         return true;
     }
 
 
-    public static void main(String[] args) {
-        int[] cost = {1,1,0,0};
-        System.out.println(minCostClimbingStairs(cost));
+    public ListNode oddEvenList1(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+    /*
+    给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
+    请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。
+    示例 1:
+    输入: 1->2->3->4->5->NULL
+    输出: 1->3->5->2->4->NULL
+    示例 2:
+    输入: 2->1->3->5->6->4->7->NULL
+    输出: 2->3->6->7->1->5->4->NULL
+    说明:
+    应当保持奇数节点和偶数节点的相对顺序。
+    链表的第一个节点视为奇数节点，第二个节点视为偶数节点，以此类推。
+     */
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode evenHead = head.next;
+        ListNode odd = head, even = evenHead;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
     }
 
 
 
+    /*
+    给你一个仅由大写英文字母组成的字符串，你可以将任意位置上的字符替换成另外的字符，总共可最多替换 k 次。在执行上述操作后，找到包含重复字母的最长子串的长度。
+    注意:
+    字符串长度 和 k 不会超过 104。
+    示例 1:
+    输入:
+    s = "ABAB", k = 2
+    输出:
+    4
+    解释:
+    用两个'A'替换为两个'B',反之亦然。
+    示例 2:
+    输入:
+    s = "AABABBA", k = 1
+    输出:
+    4
+    解释:
+    将中间的一个'A'替换为'B',字符串变为 "AABBBBA"。
+    子串 "BBBB" 有最长重复字母, 答案为 4。
+     */
+    public static int characterReplacement(String s, int k) {
+        int max = 0, start = 0, end = 0, cur = 0;
+        int[] count = new int[26];
+        while (end < s.length()) {
+            cur = Math.max(cur, ++count[s.charAt(end) - 'A']);
+            System.out.println("cur="+cur);
+            while (end - start + 1 - cur > k) {
+                count[s.charAt(start++) - 'A']--;
+            }
+            max = Math.max(max, end - start + 1);
+            end++;
+        }
+        return max;
+    }
+
+
+    /*
+    压缩字符串
+     */
+    public static int compress(char[] chars) {
+        if (chars == null || chars.length == 0) {
+            return 0;
+        }
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (char c : chars) {
+            map.put(c, map.get(c) == null ? 1 : map.get(c) + 1);
+        }
+        Set<Character> keys = map.keySet();
+        int count = 0;
+        for (char key : keys) {
+            if (map.get(key) == 1) {
+                count += 1;
+            } else {
+                count += 2;
+            }
+        }
+        return count;
+    }
+
+
+    /*
+    387. 字符串中的第一个唯一字符
+    给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+    示例：
+    s = "leetcode"
+    返回 0
+    s = "loveleetcode"  loveletov
+    返回 2
+    提示：你可以假定该字符串只包含小写字母。
+     */
+    public static int firstUniqChar(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
+        int[] lastIndex = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            lastIndex[s.charAt(i) - 'a'] = i;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (lastIndex[s.charAt(i) - 'a'] == i && s.indexOf(s.charAt(i)) == i) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int firstUniqChar1(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (s.lastIndexOf(s.charAt(i)) == i && s.indexOf(s.charAt(i)) == i) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int firstUniqChar2(String s) {
+        Map<Character, Integer> frequency = new HashMap<Character, Integer>();
+        for (int i = 0; i < s.length(); ++i) {
+            char ch = s.charAt(i);
+            frequency.put(ch, frequency.getOrDefault(ch, 0) + 1);
+        }
+        for (int i = 0; i < s.length(); ++i) {
+            if (frequency.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    /*
+    455. 分发饼干
+     */
+    public static int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int count = 0;
+        int gCon = 0;
+        int sCon = 0;
+        while (sCon < s.length && gCon < g.length) {
+            if (g[gCon] <= s[sCon]) {
+                count++;
+                gCon++;
+            }
+            sCon++;
+        }
+        return count;
+    }
+
+    public static int findContentChildren1(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int numOfChildren = g.length, numOfCookies = s.length;
+        int count = 0;
+        for (int i = 0, j = 0; i < numOfChildren && j < numOfCookies; i++, j++) {
+            while (j < numOfCookies && g[i] > s[j]) {
+                j++;
+            }
+            if (j < numOfCookies) {
+                count++;
+            }
+        }
+        return count;
+    }
 
 
 
+    public static void main(String[] args) {
+        String s = "ab";
+        String t = "cc";
+        System.out.println(isIsomorphic(s, t));
+    }
 
 
+    /*
+    给定两个字符串 s 和 t，判断它们是否是同构的。
+    如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。
+    所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。
+    示例 1:
+    输入: s = "egg", t = "add"
+    输出: true
+    示例 2:
+    输入: s = "foo", t = "bar"
+    输出: false
+    示例 3:
+    输入: s = "paper", t = "title"
+    输出: true
+    说明:
+    你可以假设 s 和 t 具有相同的长度。
+     */
+    public static boolean isIsomorphic(String s, String t) {
+        int len = s.length();
+        Map<Character, Character> map = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            if (map.containsKey(s.charAt(i))) {
+                if (map.get(s.charAt(i)) != t.charAt(i)) {
+                    return false;
+                }
+            } else {
+                if (map.containsValue(t.charAt(i))) {
+                    return false;
+                }
+                map.put(s.charAt(i), t.charAt(i));
+            }
+        }
+        return true;
+    }
+
+    /*
+    617. 合并二叉树
+     */
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 == null) {
+            return t2;
+        }
+        if (t2 == null) {
+            return t1;
+        }
+        int val = t1.val + t2.val;
+        TreeNode treeNode = new TreeNode(val);
+        treeNode.left = mergeTrees(t1.left, t2.left);
+        treeNode.right = mergeTrees(t1.right, t2.right);
+        return treeNode;
+    }
+
+    /*
+    461. 汉明距离
+    先做与运算，相同的为0，不同的为1，这样得出来的结果就是不同的都是1，相同的都是0；
+例如1001和0010，处理结果为1011，1的数量即为不同的位置数量。
+第二步计算1011中含有1的个数，可以使用这个数值不断的右移1位，然后同1做与运算，因为与运算只有都为1结果才能为1，所以如果计算结果是1，
+则说明这个数值的最后一位是1，总count值加1，循环下去，得到最终结果。
+     */
+    public int hammingDistance(int x, int y) {
+        int z = x ^ y;
+        int count = 0;
+        while (z > 0) {
+            if ((z & 1) == 1) {
+                count++;
+            }
+            z = z>>1;
+        }
+        return count;
+    }
 
 
+    /*
+    226. 翻转二叉树
+     */
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        invertTree(root.left);
+        invertTree(root.right);
+        return root;
+    }
 
+    /*
+    104. 二叉树的最大深度
+     */
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftHeight = maxDepth(root.left);
+            int rightHeight = maxDepth(root.right);
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
 
 
 }

@@ -32,7 +32,7 @@ public class DPTest {
         steps[1] = 1;
         steps[2] = 2;
         for (int i = 3; i <= n; i++) {
-            steps[1 % 3] = steps[(i - 1) % 3] + steps[(i - 2) % 3];
+            steps[i % 3] = steps[(i - 1) % 3] + steps[(i - 2) % 3];
         }
         return steps[n % 3];
     }
