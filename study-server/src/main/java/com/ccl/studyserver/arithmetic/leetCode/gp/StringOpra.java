@@ -1,5 +1,8 @@
 package com.ccl.studyserver.arithmetic.leetCode.gp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author : chichenglong
  * @version : V0.5
@@ -16,10 +19,6 @@ package com.ccl.studyserver.arithmetic.leetCode.gp;
  */
 public class StringOpra {
 
-    public static void main(String[] args) {
-        String s = "a goot  ex";
-        System.out.println(reverseWords(s));
-    }
     /*
     151
     翻转单词
@@ -72,4 +71,62 @@ public class StringOpra {
         return M[n/1000] + C[(n/100) % 10] + X[(n/10) % 10] + I[n % 10];
     }
 
+
+    public static int strStr(String haystack, String needle) {
+        if (needle.equals("")) {
+            return 0;
+        }
+        if (!haystack.contains(needle)) {
+            return -1;
+        }
+        String[] arr = haystack.split(needle);
+        if (arr.length == 0) {
+            return 0;
+        }
+        return arr[0].length() - 1;
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int minLen = strs[0].length();
+        for (String s : strs) {
+            minLen = Math.min(minLen, s.length());
+        }
+        for (int i = 0; i < minLen; i++) {
+            Set<Character> set = new HashSet<>();
+            for (String s : strs) {
+                set.add(s.charAt(i));
+            }
+            if (set.size() != 1) {
+                break;
+            }
+            sb.append(strs[0].charAt(i));
+        }
+        return sb.toString();
+    }
+
+
+    public static boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>();
+        int sum = 0;
+        while(n>0) {
+            int x = n % 10;
+            sum += x*x;
+            n = n/10;
+        }
+        System.out.println(sum);
+        if (sum == 1) {
+            return true;
+        } else {
+            return isHappy(sum);
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 2;
+        System.out.println(isHappy(n));
+    }
 }

@@ -8,105 +8,41 @@ import java.util.*;
 
 public class Test {
 
-    public ListNode reverseList(ListNode head) {
-        if (head == null) {
+
+
+    public static List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        generate(res, "", 0, 0, n);
+        return res;
+    }
+
+    public static void generate(List<String> res, String ans, int count1, int count2, int n) {
+        if (count1 > n || count2 > n) {
+            return;
+        }
+        if (count1 == n || count2 == n) {
+            res.add(ans);
+        }
+        if (count1 < count2) {
+            generate(res, ans + "(", count1 + 1, count2, n);
+            generate(res, ans + ")", count1, count2 + 1, n);
+        }
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return bfs(nums, 0, nums.length - 1);
+    }
+
+    public static TreeNode bfs(int[] nums, int start, int end) {
+        if (start > end) {
             return null;
         }
-        ListNode pre = head;
-        ListNode current = head.next;
-        pre.next = null;
-        while (current != null) {
-            ListNode next = current.next;
-            current.next = pre;
-            pre = current;
-            current = next;
-        }
-        return pre;
+        int mid = start + (end - start)/2;
+        TreeNode root = new TreeNode(mid);
+        root.left = bfs(nums, start, mid - 1);
+        root.right = bfs(nums, mid + 1, end);
+        return root;
     }
-
-    public boolean hasCycle(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast != null) {
-            fast = fast.next;
-            if (slow != fast) {
-                fast = fast.next;
-            }
-            slow = slow.next;
-            if (fast == slow) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public ListNode detectCycle(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        ListNode fast = head;
-        ListNode slow = head;
-        while (fast != slow) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        fast = head;
-        while (fast != slow) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        return fast;
-    }
-
-
-    public static int solve(int[] nums) {
-        int sum=0;
-        int n = nums.length;
-        for (int num : nums) {
-            sum += num;
-        }
-        int mid=sum/2;
-        int[] dp = new int[sum];
-        for (int num : nums) {
-            System.out.println("num = " + num);
-            for (int j = mid; j >= num; j--) {
-                dp[j] = Math.max(dp[j], dp[j - num] + num);
-                System.out.println("dp["+j+"]="+dp[j]);
-            }
-        }
-        return Math.min(dp[mid],sum-dp[mid]);
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,9,8,5,5};
-        System.out.println(solve(nums));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

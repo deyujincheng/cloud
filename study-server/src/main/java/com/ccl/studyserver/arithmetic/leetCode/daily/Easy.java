@@ -2,6 +2,7 @@ package com.ccl.studyserver.arithmetic.leetCode.daily;
 
 import com.ccl.studyserver.arithmetic.leetCode.gp.TreeNode;
 import com.ccl.studyserver.arithmetic.linked.ListNode;
+import com.google.inject.internal.cglib.core.$ObjectSwitchCallback;
 import com.google.inject.internal.cglib.proxy.$MethodProxy;
 
 import java.util.*;
@@ -926,14 +927,6 @@ public class Easy {
     }
 
 
-
-    public static void main(String[] args) {
-        String s = "ab";
-        String t = "cc";
-        System.out.println(isIsomorphic(s, t));
-    }
-
-
     /*
     给定两个字符串 s 和 t，判断它们是否是同构的。
     如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。
@@ -1033,5 +1026,296 @@ public class Easy {
         }
     }
 
+    /*
+        22 括号生成
+        数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+        示例：
+        输入：n = 3
+        输出：[
+               "((()))",
+               "(()())",
+               "(())()",
+               "()(())",
+               "()()()"
+             ]
+     */
+    public static List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<String>();
+        generate(res, "", 0, 0, n);
+        return res;
+    }
+    //count1统计“(”的个数，count2统计“)”的个数
+    public static void generate(List<String> res , String ans, int count1, int count2, int n){
+        if(count1 > n || count2 > n) return;
+        if(count1 == n && count2 == n)  res.add(ans);
+        if(count1 >= count2){
+            generate(res, ans+"(", count1+1, count2, n);
+            generate(res, ans+")", count1, count2+1, n);
+        }
+    }
 
+    public static int hammingWeight(int n) {
+        int count = 0;
+        System.out.println(n);
+        for(int i = 0; i < 32; i++) {
+            if ((n & 1) == 1) {
+                count++;
+            }
+            n = n >> 1;
+        }
+        return count;
+
+//     更好的解法
+//        int count = 0;
+//        while (n != 0) {
+//            n = n & (n - 1);
+//            count ++;
+//        }
+//        return count;
+    }
+
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        char[] str1 = s.toCharArray();
+        char[] str2 = t.toCharArray();
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+        return str1 == str2;
+        //return Arrays.equals(str1, str2);
+    }
+
+    /*
+    371. 两整数之和
+    难度
+    简单
+    348
+    收藏
+    分享
+    切换为英文
+    接收动态
+    反馈
+    不使用运算符 + 和 - ​​​​​​​，计算两整数 ​​​​​​​a 、b ​​​​​​​之和。
+    示例 1:
+    输入: a = 1, b = 2
+    输出: 3
+    示例 2:
+    输入: a = -2, b = 3
+    输出: 1
+     */
+    public static int getSum(int a, int b) {
+        while(b != 0){
+            int temp = a ^ b;
+            b = (a & b) << 1;
+            a = temp;
+        }
+        return a;
+    }
+
+    /*
+    287. 寻找重复数
+    给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
+    示例 1:
+    输入: [1,3,4,2,2]
+    输出: 2
+    示例 2:
+    输入: [3,1,3,4,2]
+    输出: 3
+    说明：
+    不能更改原数组（假设数组是只读的）。
+    只能使用额外的 O(1) 的空间。
+    时间复杂度小于 O(n2) 。
+    数组中只有一个重复的数字，但它可能不止重复出现一次。
+     */
+    public int findDuplicate(int[] nums) {
+        /*
+         快慢指针思想, fast 和 slow 是指针, nums[slow] 表示取指针对应的元素
+         注意 nums 数组中的数字都是在 1 到 n 之间的(在数组中进行游走不会越界),
+         因为有重复数字的出现, 所以这个游走必然是成环的, 环的入口就是重复的元素,
+         即按照寻找链表环入口的思路来做
+         **/
+        int fast = 0, slow = 0;
+        while(true) {
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+            if(slow == fast) {
+                fast = 0;
+                while(nums[slow] != nums[fast]) {
+                    fast = nums[fast];
+                    slow = nums[slow];
+                }
+                return nums[slow];
+            }
+        }
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        StringBuilder sb = new StringBuilder();
+        while(head != null) {
+            sb.append(head.val);
+            head = head.next;
+        }
+        return sb.toString().equals(sb.reverse().toString());
+    }
+
+
+    /*
+        26. 删除排序数组中的重复项
+        给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+        不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+        示例 1:
+        给定数组 nums = [1,1,2],
+        函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。
+        你不需要考虑数组中超出新长度后面的元素。
+        示例 2:
+        给定 nums = [0,0,1,1,1,2,2,3,3,4],
+        函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+        你不需要考虑数组中超出新长度后面的元素。
+     */
+
+    public int removeDuplicates(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int p = 0;
+        int q = 1;
+        while(q < nums.length){
+            if(nums[p] != nums[q]){
+                nums[p + 1] = nums[q];
+                p++;
+            }
+            q++;
+        }
+        return p + 1;
+    }
+
+    /*
+    121. 买卖股票的最佳时机
+    给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+    如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。
+    注意：你不能在买入股票前卖出股票。
+    示例 1:
+    输入: [7,1,5,3,6,4]
+    输出: 5
+    解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+         注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+    示例 2:
+    输入: [7,6,4,3,1]
+    输出: 0
+    解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+     */
+    public static int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int min = prices[0];
+        int[] dp = new int[prices.length];
+        for (int i = 1; i < prices.length; i++) {
+            min = Math.min(min, prices[i]);
+            dp[i] = Math.max(dp[i - 1],prices[i] - min);
+        }
+        return dp[prices.length - 1];
+    }
+
+
+    /*
+    101. 对称二叉树
+        给定一个二叉树，检查它是否是镜像对称的。
+        例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+            1
+           / \
+          2   2
+         / \ / \
+        3  4 4  3
+
+        但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+            1
+           / \
+          2   2
+           \   \
+           3    3
+     */
+    public boolean isSymmetric(TreeNode root) {
+        return check(root, root);
+    }
+
+    public boolean check(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null) {
+            return false;
+        }
+        return p.val == q.val && check(p.left, q.right) && check(p.right, q.left);
+    }
+
+
+    /*
+    108. 将有序数组转换为二叉搜索树
+        将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
+        本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
+        示例:
+        给定有序数组: [-10,-3,0,5,9],
+        一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+
+              0
+             / \
+           -3   9
+           /   /
+         -10  5
+     */
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return dfs(nums, 0, nums.length - 1);
+    }
+
+    private TreeNode dfs(int[] nums, int lo, int hi) {
+        if (lo > hi) {
+            return null;
+        }
+        // 以升序数组的中间元素作为根节点 root。
+        int mid = lo + (hi - lo) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        // 递归的构建 root 的左子树与右子树。
+        root.left = dfs(nums, lo, mid - 1);
+        root.right = dfs(nums, mid + 1, hi);
+        return root;
+    }
+
+
+    public int mySqrt(int x) {
+        int l = 0, r = x, ans = -1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if ((long) mid * mid <= x) {
+                ans = mid;
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+    public static int sqrt(int x) {
+        int start = 0;
+        int end = x;
+        int mid;
+        int ans  = 0;
+        while (start <= end) {
+            mid = start + (end - start)/2;
+            if ((long)mid * mid <= x) {
+                ans = mid;
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int x = 4;
+        System.out.println(sqrt(x));
+    }
 }

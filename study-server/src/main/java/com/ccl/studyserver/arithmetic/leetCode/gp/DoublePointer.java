@@ -120,11 +120,6 @@ public class DoublePointer {
     数组长度不超过1000。
     数组里整数的范围为 [0, 1000]。
     */
-
-    public static void main(String[] args) {
-        int[] nums = {2,2,3,4};
-        System.out.println(triangleNumber(nums));
-    }
     public static int triangleNumber(int[] nums) {
         if (nums == null || nums.length < 3) {
             return 0;

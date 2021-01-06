@@ -37,10 +37,6 @@ public class TwoNumberSum {
         return indexs;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {2,7,11,15};
-        System.out.println(Arrays.toString(twoSum1(nums, 13)));
-    }
 
     public static int[] twoSum1(int[] nums, int target) {
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -120,6 +116,30 @@ public class TwoNumberSum {
     输入: "cbbd"
     输出: "bb"
     */
+
+    public static void main(String[] args) {
+        String s = "babadaaabaaa";
+        System.out.println(longestPalindrome1(s));
+    }
+
+    public static String longestPalindrome1(String s) {
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        String res = "";
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i <= j; i++) {
+                if (s.charAt(i) == s.charAt(j) && (j <= i + 1 || dp[i + 1][j - 1])) {
+                    dp[i][j] = true;
+                    int len = j - i + 1;
+                    System.out.println("res="+res);
+                    if (len > res.length()) {
+                        res = s.substring(i, j + 1);
+                    }
+                }
+            }
+        }
+        return res;
+    }
 
     public static String longestPalindrome(String s) {
         if (s.isEmpty()) {
