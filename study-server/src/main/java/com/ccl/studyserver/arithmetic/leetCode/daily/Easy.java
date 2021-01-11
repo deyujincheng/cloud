@@ -1362,7 +1362,25 @@ public class Easy {
     }
 
     public static void main(String[] args) {
-        int n = 45;
-        System.out.println(isPowerOfThree(n));
+        int[] nums = {-2,1};
+        System.out.println(maxSubArray11(nums));
+    }
+
+    public static int maxSubArray11(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length < 2) {
+            return nums[0];
+        }
+        int[] dp = new int[3];
+        dp[0] = nums[0];
+        dp[1] = Math.max(dp[0] + nums[1],nums[1]);
+        int max = Math.max(dp[0],dp[1]);
+        for (int i = 2; i < nums.length; i++) {
+            dp[i%3] = Math.max(dp[(i - 1) % 3] + nums[i],nums[i]);
+            max = Math.max(max, dp[i%3]);
+        }
+        return max;
     }
 }
