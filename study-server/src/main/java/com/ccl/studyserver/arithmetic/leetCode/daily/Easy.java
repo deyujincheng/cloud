@@ -2,6 +2,7 @@ package com.ccl.studyserver.arithmetic.leetCode.daily;
 
 import com.ccl.studyserver.arithmetic.leetCode.gp.TreeNode;
 import com.ccl.studyserver.arithmetic.linked.ListNode;
+import com.google.inject.internal.cglib.core.$MethodInfo;
 import com.google.inject.internal.cglib.core.$ObjectSwitchCallback;
 import com.google.inject.internal.cglib.proxy.$MethodProxy;
 
@@ -1283,6 +1284,9 @@ public class Easy {
     }
 
 
+    /*
+    差的平方根
+     */
     public int mySqrt(int x) {
         int l = 0, r = x, ans = -1;
         while (l <= r) {
@@ -1314,8 +1318,51 @@ public class Easy {
         return ans;
     }
 
+    /*
+    283. 移动零
+     */
+    public void moveZeroes(int[] nums) {
+        // for (int i = 0; i <  nums.length; i++) {
+        //     if (nums[i] != 0) {
+        //         continue;
+        //     }
+        //     int point = i;
+        //     while (point < nums.length - 1 && nums[point] == 0) {
+        //         point++;
+        //     }
+        //     nums[i] = nums[point];
+        //     nums[point] = 0;
+        // }
+
+        int index = 0;
+        for (int num : nums) {
+            if (num != 0) {
+                nums[index++] = num;
+            }
+        }
+        for (int i = index; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+
+
+    /*
+    326. 3的幂
+    给定一个整数，写一个函数来判断它是否是 3 的幂次方。如果是，返回 true ；否则，返回 false 。
+    整数 n 是 3 的幂次方需满足：存在整数 x 使得 n == 3x
+     */
+    public static boolean isPowerOfThree(int n) {
+        if (n < 1) {
+            return false;
+        }
+        while(n % 3 == 0) {
+            n = n/3;
+        }
+        return n == 1;
+    }
+
     public static void main(String[] args) {
-        int x = 4;
-        System.out.println(sqrt(x));
+        int n = 45;
+        System.out.println(isPowerOfThree(n));
     }
 }
