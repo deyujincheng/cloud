@@ -5,6 +5,8 @@ import com.ccl.studyserver.arithmetic.linked.ListNode;
 import com.ctc.wstx.sax.WstxSAXParser;
 
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Test {
 
@@ -44,5 +46,150 @@ public class Test {
         return root;
     }
 
+    //快速排序
 
+    //接雨水
+    public int rain(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int leftHeight = height[left];
+        int rightHeight = height[right];
+        int sum = 0;
+        while (left <= right) {
+            if (leftHeight <= rightHeight) {
+                if (height[left] > height[left + 1]) {
+                    sum+=height[left] - height[left + 1];
+                } else {
+                    leftHeight = height[left + 1];
+                }
+                left++;
+            } else {
+                if (height[right] > height[right - 1]) {
+                    sum+=height[right] - height[right - 1];
+                } else {
+                    rightHeight = height[right--];
+                }
+                right--;
+            }
+        }
+        return sum;
+    }
+    // 反转链表II m n
+    // 1 2 3 4 5
+    // 1 4 3 2 5
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (head == null) {
+            return null;
+        }
+        ListNode pre = head;
+        ListNode cur = head.next;
+        ListNode con = null;
+        while (m > 1) {
+            con = pre;
+            pre = cur;
+            cur = cur.next;
+            m--;
+            n--;
+        }
+        ListNode tail = pre;
+        ListNode next = null;
+        while (n > 1) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+            n--;
+        }
+        System.out.println(pre.val);
+        if (con != null) {
+            con.next = pre;
+        } else {
+            head = pre;
+        }
+        tail.next = cur;
+        return head;
+    }
+
+    public static AtomicInteger atomicInteger = new AtomicInteger(0);
+    private static final CountDownLatch countDownLatch = new CountDownLatch(10000);
+    public static void count() throws InterruptedException {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        for (int i = 0; i < 100000; i++) {
+            executor.execute(() -> {
+                atomicInteger.addAndGet(1);
+                countDownLatch.countDown();
+            });
+        }
+        countDownLatch.await();
+        System.out.println(atomicInteger.get());
+    }
+
+
+    public int findDuplicate(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int fast = 0;
+        int slow = 0;
+        while (true) {
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+            if (fast == slow) {
+                fast = 0;
+                while (nums[fast] != nums[slow]) {
+                    fast = nums[fast];
+                    slow = nums[slow];
+                }
+                return nums[slow];
+            }
+        }
+    }
+
+    /*
+    23. 合并K个升序链表
+    输入：lists = [[1,4,5],[1,3,4],[2,6]]
+    输出：[1,1,2,3,4,4,5,6]
+    解释：链表数组如下：
+    [
+      1->4->5,
+      1->3->4,
+      2->6
+    ]
+    将它们合并到一个有序链表中得到。
+    1->1->2->3->4->4->5->6
+     */
+
+    public ListNode mergeKLists2(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+
+        for (ListNode list : lists) {
+            if (list == null) {
+                continue;
+            }
+            pq.add(list);
+        }
+        System.out.println(pq);
+        while (!pq.isEmpty()) {
+            ListNode nextNode = pq.poll();
+            curr.next = nextNode;
+            curr = curr.next;
+            if (nextNode.next != null) {
+                pq.add(nextNode.next);
+            }
+        }
+        return dummyHead.next;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        while (true) {
+            System.out.println("ddsdsfd");
+            TimeUnit.SECONDS.sleep(2);
+        }
+    }
 }

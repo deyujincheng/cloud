@@ -67,8 +67,8 @@ public class Easy {
         }
         return res;
     }
-    public static int maxSubArray2(int[] nums) {
-        int sum = nums[0];
+    public int maxSubArray2(int[] nums) {
+        int sum = 0;
         int max = nums[0];
         for (int num : nums) {
             if (sum > 0) {
@@ -105,6 +105,18 @@ public class Easy {
         return nums1;
     }
 
+    public void mergeVoid(int[] nums1, int m, int[] nums2, int n) {
+        int k = m+n-1;  //最后一个位置
+        int i = m - 1, j = n - 1;
+        //每次都挑最大的数出来
+        while(i >= 0 && j >= 0){
+            nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
+        }
+        //如果m=0,n=1的情况
+        while(j >= 0){
+            nums1[k--] = nums2[j--];
+        }
+    }
 
     /*
     7 整数翻转
@@ -122,6 +134,10 @@ public class Easy {
         return result;
     }
 
+    public static void main(String[] args) {
+        String s = "";
+        System.out.println(reverse(-321));
+    }
     /*
     169
      */
@@ -321,6 +337,31 @@ public class Easy {
         return dummyHead.next;
     }
 
+    /*
+    用最小堆实现，多个链表合并也可以采取这种方式
+     */
+    public ListNode mergeTwoLists4(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+        queue.add(l1);
+        queue.add(l2);
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        while (!queue.isEmpty()) {
+            ListNode next = queue.poll();
+            cur.next = next;
+            cur = cur.next;
+            if (next.next != null) {
+                queue.add(next.next);
+            }
+        }
+        return head.next;
+    }
 
     /*
     141 环形链表
@@ -384,8 +425,8 @@ public class Easy {
         ListNode me = headA;
         ListNode she = headB;
         while (me != she) {
-            me = me == null ? she : me.next;
-            she = she == null ? me : she.next;
+            me = me == null ? headB : me.next;
+            she = she == null ? headA : she.next;
         }
         return me;
     }
@@ -1359,11 +1400,6 @@ public class Easy {
             n = n/3;
         }
         return n == 1;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {-2,1};
-        System.out.println(maxSubArray11(nums));
     }
 
     public static int maxSubArray11(int[] nums) {
